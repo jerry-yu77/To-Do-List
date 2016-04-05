@@ -1,51 +1,51 @@
 <!doctype html>
 <!--To Do List in Angular-->
 <html>
-  <head>
-  	<script src="angular.min.js"></script>
-  </head>
+<head>
+  <script src="angular.min.js"></script>
+</head>
 
 
-  <body>
-  	<div ng-app="myApp" ng-controller="myCtrl">
-			<h1>My to do list:</h1>
-			<p>To do:</p>
-			<input ng-model="task" on-enter="submitTask()"></input>
-			<button ng-click="submitTask()">Submit</button>
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+  <h1>My to do list:</h1>
+  <p>To do:</p>
+  <input ng-model="task" on-enter="submitTask()"></input>
+  <button ng-click="submitTask()">Submit</button>
 
-			<li ng-repeat="x in tasks track by $index">{{x}}</li>
-		</div>
+  <li ng-repeat="x in tasks track by $index">{{x}}</li>
+</div>
 
-		<script>
-		var app=angular.module('myApp',[]);
+<script>
+  var app = angular.module('myApp', []);
 
-		app.controller('myCtrl',function($scope){
-			$scope.task;
-			$scope.tasks = [];
-			$scope.submitTask = function (){
-				$scope.tasks.push($scope.task);
-				$scope.task = '';
-			}	
-		});
+  app.controller('myCtrl', function ($scope) {
+    $scope.task;
+    $scope.tasks = [];
+    $scope.submitTask = function () {
+      $scope.tasks.push($scope.task);
+      $scope.task = '';
+    }
+  });
 
-		app.directive('onEnter', function() {
-	    return function(scope, element, attrs) {
+  app.directive('onEnter', function () {
+    return function (scope, element, attrs) {
 
-        element.bind("keydown keypress", function(event) {
-          var keyCode = event.which || event.keyCode;
+      element.bind("keydown keypress", function (event) {
+        var keyCode = event.which || event.keyCode;
 
-          // If enter key is pressed
-          if (keyCode === 13) {
-            scope.$apply(function() {
-              // Evaluate the expression
-              scope.$eval(attrs.onEnter);
-            });
-            event.preventDefault();
-          }
-      	});
-	    };
-		});
-		</script>
+        // If enter key is pressed
+        if (keyCode === 13) {
+          scope.$apply(function () {
+            // Evaluate the expression
+            scope.$eval(attrs.onEnter);
+          });
+          event.preventDefault();
+        }
+      });
+    };
+  });
+</script>
 
-  </body>
+</body>
 </html>
