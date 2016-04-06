@@ -18,11 +18,11 @@
   <input ng-model="task" on-enter="submitTask()"/>
   <button ng-click="submitTask()">Submit</button>
 
-  <p ng-repeat="entry in tasks track by $index">
+  <p ng-repeat="task in tasks track by $index">
     <label ng-class="{strike:checked}">
-      <input type="checkbox" ng-model="checked">{{entry}}
+      <input type="checkbox" ng-model="checked">{{task}}
     </label>
-    <button ng-show="checked">Remove</button>
+    <button ng-show="checked" ng-click="removeTask($index)">Remove {{$index}}</button>
   </p>
 </div>
 
@@ -35,6 +35,9 @@
     $scope.submitTask = function () {
       $scope.tasks.push($scope.task);
       $scope.task = '';
+    }
+    $scope.removeTask = function (index) {
+      $scope.tasks.splice(index, 1);
     }
   });
 
