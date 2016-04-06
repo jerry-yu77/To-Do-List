@@ -19,13 +19,11 @@
   <button ng-click="submitTask()">Submit</button>
 
   <p ng-repeat="entry in tasks track by $index">
-    <label ng-class="{strike:taskCheck.notDone}">
-      <input type="checkbox" ng-model="taskCheck.notDone">{{entry}}
+    <label ng-class="{strike:checked}">
+      <input type="checkbox" ng-model="checked">{{entry}}
     </label>
-    <button ng-show="taskCheck.notDone">Remove</button>
+    <button ng-show="checked">Remove</button>
   </p>
-
-    <!--<li ng-repeat="entry in tasks track by $index">{{entry}}</li>-->
 </div>
 
 <script>
@@ -37,10 +35,6 @@
     $scope.submitTask = function () {
       $scope.tasks.push($scope.task);
       $scope.task = '';
-    }
-    $scope.taskCheck = {
-      notDone : false,
-      done : true
     }
   });
 
