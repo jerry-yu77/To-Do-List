@@ -2,6 +2,11 @@
 <!--To Do List in Angular-->
 <html>
 <head>
+  <style>
+    .strike{
+      text-decoration: line-through;
+    }
+  </style>
   <script src="angular.min.js"></script>
 </head>
 
@@ -10,10 +15,17 @@
 <div ng-app="myApp" ng-controller="myCtrl">
   <h1>My to do list:</h1>
   <p>To do:</p>
-  <input ng-model="task" on-enter="submitTask()"></input>
+  <input ng-model="task" on-enter="submitTask()"/>
   <button ng-click="submitTask()">Submit</button>
 
-  <li ng-repeat="x in tasks track by $index">{{x}}</li>
+  <p ng-repeat="entry in tasks track by $index">
+    <label ng-class="{strike:taskCheck.notDone}">
+      <input type="checkbox" ng-model="taskCheck.notDone">{{entry}}
+    </label>
+    <button ng-show="taskCheck.notDone">Remove</button>
+  </p>
+
+    <!--<li ng-repeat="entry in tasks track by $index">{{entry}}</li>-->
 </div>
 
 <script>
@@ -25,6 +37,10 @@
     $scope.submitTask = function () {
       $scope.tasks.push($scope.task);
       $scope.task = '';
+    }
+    $scope.taskCheck = {
+      notDone : false,
+      done : true
     }
   });
 
