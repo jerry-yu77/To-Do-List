@@ -6,8 +6,10 @@
     .strike{
       text-decoration: line-through;
     }
+    [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+      display: none !important;
+    }
   </style>
-  <script src="angular.min.js"></script>
 </head>
 
 
@@ -16,16 +18,16 @@
   <h1>My to do list:</h1>
   <p>To do:</p>
   <input ng-model="task" on-enter="submitTask()"/>
-  <button ng-click="submitTask()">Submit</button>
 
-  <p ng-repeat="task in tasks track by $index">
+  <p ng-repeat="task in tasks" class="ng-cloak">
     <label ng-class="{strike:checked}">
-      <input type="checkbox" ng-model="checked">{{task}}
+      <input type="checkbox" ng-model="checked">{{task.name}}
     </label>
-    <button ng-show="checked" ng-click="removeTask($index)">Remove {{$index}}</button>
+    <button ng-show="checked" ng-click="removeTask($index)">Remove</button>
   </p>
 </div>
 
+<script src="angular.min.js"></script>
 <script>
   var app = angular.module('myApp', []);
 
@@ -33,7 +35,7 @@
     $scope.task;
     $scope.tasks = [];
     $scope.submitTask = function () {
-      $scope.tasks.push($scope.task);
+      $scope.tasks.push({name: $scope.task});
       $scope.task = '';
     }
     $scope.removeTask = function (index) {
