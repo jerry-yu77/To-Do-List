@@ -2,65 +2,33 @@
 <!--To Do List in Angular-->
 <html>
 <head>
-  <style>
-    .strike{
-      text-decoration: line-through;
-    }
-    [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-      display: none !important;
-    }
-  </style>
+  <link href="toDoList.css" rel="stylesheet" type="text/css">
 </head>
-
 
 <body>
 <div ng-app="myApp" ng-controller="myCtrl">
   <h1>My to do list:</h1>
-  <p>To do:</p>
-  <input ng-model="task" on-enter="submitTask()"/>
+  
+  <label>To do:
+    <input ng-model="task" on-enter="submitTask()">
+  </label>
 
   <p ng-repeat="task in tasks" class="ng-cloak">
-    <label ng-class="{strike:checked}">
-      <input type="checkbox" ng-model="checked">{{task.name}}
+    <label>
+      <input type="checkbox" ng-click="moveTask($index, true, task)">{{task.name}}
     </label>
-    <button ng-show="checked" ng-click="removeTask($index)">Remove</button>
+  </p>
+
+  <p ng-repeat="task in finishedTasks" class="ng-cloak">
+    <label class="strike">
+      <input type="checkbox" ng-checked="true" ng-click="moveTask($index, false, task)">{{task.name}}
+    </label>
+    <button ng-click="removeTask($index)">Remove</button>
   </p>
 </div>
 
 <script src="angular.min.js"></script>
-<script>
-  var app = angular.module('myApp', []);
-
-  app.controller('myCtrl', function ($scope) {
-    $scope.task;
-    $scope.tasks = [];
-    $scope.submitTask = function () {
-      $scope.tasks.push({name: $scope.task});
-      $scope.task = '';
-    }
-    $scope.removeTask = function (index) {
-      $scope.tasks.splice(index, 1);
-    }
-  });
-
-  app.directive('onEnter', function () {
-    return function (scope, element, attrs) {
-
-      element.bind("keydown keypress", function (event) {
-        var keyCode = event.which || event.keyCode;
-
-        // If enter key is pressed
-        if (keyCode === 13) {
-          scope.$apply(function () {
-            // Evaluate the expression
-            scope.$eval(attrs.onEnter);
-          });
-          event.preventDefault();
-        }
-      });
-    };
-  });
-</script>
+<script src="toDoList.js"></script>
 
 </body>
 </html>
