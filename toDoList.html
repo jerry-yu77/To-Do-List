@@ -8,22 +8,16 @@
 <body>
 <div ng-app="myApp" ng-controller="myCtrl">
   <h1>My to do list:</h1>
-  
+
   <label>To do:
     <input ng-model="task" on-enter="submitTask()">
   </label>
 
   <p ng-repeat="task in tasks" class="ng-cloak">
-    <label>
-      <input type="checkbox" ng-click="moveTask($index, true, task)">{{task.name}}
+    <label ng-class="{strike:{{task.checked}}}">
+      <input type="checkbox" ng-checked={{task.checked}} ng-model="checked" ng-click="moveTask($index, checked, task)">{{task.name}}
     </label>
-  </p>
-
-  <p ng-repeat="task in finishedTasks" class="ng-cloak">
-    <label class="strike">
-      <input type="checkbox" ng-checked="true" ng-click="moveTask($index, false, task)">{{task.name}}
-    </label>
-    <button ng-click="removeTask($index)">Remove</button>
+    <button ng-show={{task.checked}} ng-click="removeTask($index)">Remove</button>
   </p>
 </div>
 

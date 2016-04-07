@@ -3,22 +3,24 @@ var app = angular.module('myApp', []);
 app.controller('myCtrl', function ($scope) {
   $scope.task;
   $scope.tasks = [];
-  $scope.finishedTasks = [];
   $scope.submitTask = function () {
-    $scope.tasks.push({name: $scope.task});
+    $scope.tasks.unshift({name: $scope.task,
+                       checked: false});
     $scope.task = '';
   }
   $scope.moveTask = function (index, checked, task) {
     if (checked === true) {
       $scope.tasks.splice(index, 1);
-      $scope.finishedTasks.push({name: task.name});
+      $scope.tasks.push({name: task.name,
+                         checked: true});
     } else {
-      $scope.finishedTasks.splice(index, 1);
-      $scope.tasks.push({name: task.name});
+      $scope.tasks.splice(index, 1);
+      $scope.tasks.unshift({name: task.name,
+                            checked: false});
     }
   }
   $scope.removeTask = function (index) {
-    $scope.finishedTasks.splice(index, 1);
+    $scope.tasks.splice(index, 1);
   }
 });
 
