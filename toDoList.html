@@ -2,24 +2,26 @@
 <!--To Do List in Angular-->
 <html>
 <head>
-  <link href="toDoList.css" rel="stylesheet" type="text/css">
+  <link href="toDoList.css" rel="stylesheet" type="text/css" >
 </head>
 
 <body>
-<div ng-app="myApp" ng-controller="myCtrl">
-  <h1>My to do list:</h1>
+  <div ng-app="myApp" ng-controller="myCtrl" class="main-app">
 
-  <label>To do:
-    <input ng-model="task" on-enter="submitTask()">
-  </label>
+    <h1 class="notepad-top">To do list:</h1>
 
-  <p ng-repeat="task in tasks" class="ng-cloak">
-    <label ng-class="{strike:{{task.checked}}}">
-      <input type="checkbox" ng-checked={{task.checked}} ng-model="checked" ng-click="moveTask($index, checked, task)">{{task.name}}
-    </label>
-    <button ng-show={{task.checked}} ng-click="removeTask($index)">Remove</button>
-  </p>
-</div>
+    <div class="notepad-body">
+      <input class="task-input" ng-model="task" on-enter="submitTask()" placeholder="Enter task here:">
+      <ul class="list">
+        <li ng-repeat="task in tasks" class="ng-cloak">
+          <label ng-class="{strike:task.checked}">
+            <input type="checkbox" ng-checked="task.checked" ng-model="checked" ng-click="moveTask($index, checked, task)">&nbsp{{task.name}}
+          </label>
+          <button ng-show="task.checked" ng-click="removeTask($index)"></button>
+        </li>
+      </ul>
+    </div>
+  </div>
 
 <script src="angular.min.js"></script>
 <script src="toDoList.js"></script>

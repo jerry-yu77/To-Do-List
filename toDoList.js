@@ -1,12 +1,20 @@
 var app = angular.module('myApp', []);
 
 app.controller('myCtrl', function ($scope) {
-  $scope.task;
   $scope.tasks = [];
+  var taskCount = 0;
   $scope.submitTask = function () {
-    $scope.tasks.unshift({name: $scope.task,
-                       checked: false});
-    $scope.task = '';
+    if(taskCount < 15) {
+      $scope.tasks.unshift({
+        name: $scope.task,
+        checked: false
+      });
+      $scope.task = '';
+      taskCount++;
+    }else{
+      alert("Maybe you should finish and remove some tasks first.")
+    }
+
   }
   $scope.moveTask = function (index, checked, task) {
     if (checked === true) {
@@ -21,6 +29,7 @@ app.controller('myCtrl', function ($scope) {
   }
   $scope.removeTask = function (index) {
     $scope.tasks.splice(index, 1);
+    taskCount--;
   }
 });
 
