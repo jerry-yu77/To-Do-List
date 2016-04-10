@@ -21,7 +21,7 @@ function ToDoCtrl($scope) {
       $scope.task = '';
       taskCount++;
     } else {
-      alert("Maybe you should finish and remove some tasks first.")
+      alert("Maybe you should finish and remove some tasks first.");
     }
   }
 
@@ -33,7 +33,7 @@ function ToDoCtrl($scope) {
         name: task.name,
         checked: true
       });
-      //move unchecked task to beginning of tasks[]  
+      //move unchecked task to beginning of tasks[]
     } else {
       $scope.tasks.splice(index, 1);
       $scope.tasks.unshift({
@@ -47,7 +47,7 @@ function ToDoCtrl($scope) {
     $scope.tasks.splice(index, 1);
     taskCount--;
   }
-};
+}
 
 function onEnter() {
   return function (scope, element, attrs) {
@@ -57,7 +57,7 @@ function onEnter() {
 
       // If enter key is pressed
       if (keyCode === 13) {
-        scope.$apply(function () {
+        scope.$evalAsync(function () {
           // Evaluate the expression
           scope.$eval(attrs.onEnter);
         });
@@ -65,4 +65,4 @@ function onEnter() {
       }
     });
   };
-};
+}

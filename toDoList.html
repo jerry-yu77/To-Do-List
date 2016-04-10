@@ -13,7 +13,7 @@
   <div class="notepad-body">
     <input class="task-input" data-ng-model="task" on-enter="submitTask()" placeholder="Enter task here:">
     <ul class="list">
-      <li data-ng-repeat="task in tasks" class="data-ng-cloak">
+      <li data-ng-repeat="task in tasks" data-ng-cloak>
         <label data-ng-class="{strike:task.checked}">
           <input type="checkbox" data-ng-checked="task.checked" data-ng-model="checked"
                  data-ng-click="moveTask($index, checked, task)">&nbsp{{task.name}}
