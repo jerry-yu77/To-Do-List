@@ -1,53 +1,61 @@
-body{
-    background-image: url("images/toDoList-background.jpg");
-    background-size: 100%;
+body {
+  background-image: url("images/toDoList-background.jpg");
+  background-size: 100%;
 }
-.main-app{
-    font-family: Papyrus, fantasy;
-    width:800px;
-    height:792px;
-    margin: 50px auto auto;
-    background-image: url("images/notepad.png");
-    background-size: cover;
+
+.main-app {
+  font-family: Papyrus, fantasy;
+  width: 800px;
+  height: 792px;
+  margin: 50px auto auto;
+  background-image: url("images/notepad.png");
+  background-size: cover;
 }
-.notepad-top{
-    margin-top: 96px;
-    margin-left: 150px;
-    position: absolute;
-    font-size: 48px;
+
+.notepad-top {
+  margin-top: 96px;
+  margin-left: 150px;
+  position: absolute;
+  font-size: 48px;
 }
-.notepad-body{
-    margin-top: 183px;
-    margin-left:  150px;
-    position: absolute;
+
+.notepad-body {
+  margin-top: 183px;
+  margin-left: 150px;
+  position: absolute;
 }
-.task-input{
-    background-color: transparent;
-    border: none;
-    outline: none;
-    font-family: Papyrus, fantasy;
-    font-size: 24px;
+
+.task-input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-family: Papyrus, fantasy;
+  font-size: 24px;
 }
-.list{
-    list-style-type:none;
-    padding-left:0;
-    margin-top: 32px;
-    font-size: 22px;
+
+.list {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 32px;
+  font-size: 22px;
 }
-button{
-    background-image: url("images/x-icon.png");
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    background-color: transparent;
-    height: 23px;
-    width: 23px;
-    border: none;
-    float: right;
-    margin-right: -250px;
+
+button {
+  background-image: url("images/x-icon.png");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-color: transparent;
+  height: 23px;
+  width: 23px;
+  border: none;
+  float: right;
+  margin-right: -250px;
 }
-.strike{
-    text-decoration: line-through;
+
+.strike {
+  text-decoration: line-through;
 }
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-    display: none !important;
+  display: none !important;
 }

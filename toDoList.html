@@ -2,26 +2,27 @@
 <!--To Do List in Angular-->
 <html>
 <head>
-  <link href="toDoList.css" rel="stylesheet" type="text/css" >
+  <link href="toDoList.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-  <div ng-app="myApp" ng-controller="myCtrl" class="main-app">
+<div data-ng-app="toDoApp" data-ng-controller="ToDoCtrl" class="main-app">
 
-    <h1 class="notepad-top">To do list:</h1>
+  <h1 class="notepad-top">To do list:</h1>
 
-    <div class="notepad-body">
-      <input class="task-input" ng-model="task" on-enter="submitTask()" placeholder="Enter task here:">
-      <ul class="list">
-        <li ng-repeat="task in tasks" class="ng-cloak">
-          <label ng-class="{strike:task.checked}">
-            <input type="checkbox" ng-checked="task.checked" ng-model="checked" ng-click="moveTask($index, checked, task)">&nbsp{{task.name}}
-          </label>
-          <button ng-show="task.checked" ng-click="removeTask($index)"></button>
-        </li>
-      </ul>
-    </div>
+  <div class="notepad-body">
+    <input class="task-input" data-ng-model="task" on-enter="submitTask()" placeholder="Enter task here:">
+    <ul class="list">
+      <li data-ng-repeat="task in tasks" class="data-ng-cloak">
+        <label data-ng-class="{strike:task.checked}">
+          <input type="checkbox" data-ng-checked="task.checked" data-ng-model="checked"
+                 data-ng-click="moveTask($index, checked, task)">&nbsp{{task.name}}
+        </label>
+        <button data-ng-show="task.checked" data-ng-click="removeTask($index)"></button>
+      </li>
+    </ul>
   </div>
+</div>
 
 <script src="angular.min.js"></script>
 <script src="toDoList.js"></script>

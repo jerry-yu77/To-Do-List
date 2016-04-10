@@ -1,39 +1,55 @@
-var app = angular.module('myApp', []);
+angular
+  .module('toDoApp', [])
+  .controller('ToDoCtrl', ToDoCtrl)
+  .directive('onEnter', onEnter);
 
-app.controller('myCtrl', function ($scope) {
-  $scope.tasks = [];
-  var taskCount = 0;
-  $scope.submitTask = function () {
-    if(taskCount < 15) {
+function ToDoCtrl($scope) {
+  $scope.tasks      = [];
+  var taskCount     = 0;
+  $scope.submitTask = submitTask;
+  $scope.moveTask   = moveTask;
+  $scope.removeTask = removeTask;
+
+  function submitTask() {
+    //only allow 15 tasks on page
+    if (taskCount < 15) {
+      //new task added to beginning of tasks[]
       $scope.tasks.unshift({
         name: $scope.task,
         checked: false
       });
       $scope.task = '';
       taskCount++;
-    }else{
+    } else {
       alert("Maybe you should finish and remove some tasks first.")
     }
-
   }
-  $scope.moveTask = function (index, checked, task) {
+
+  function moveTask(index, checked, task) {
+    //move checked task to end of tasks[]
     if (checked === true) {
       $scope.tasks.splice(index, 1);
-      $scope.tasks.push({name: task.name,
-                         checked: true});
+      $scope.tasks.push({
+        name: task.name,
+        checked: true
+      });
+      //move unchecked task to beginning of tasks[]  
     } else {
       $scope.tasks.splice(index, 1);
-      $scope.tasks.unshift({name: task.name,
-                            checked: false});
+      $scope.tasks.unshift({
+        name: task.name,
+        checked: false
+      });
     }
   }
-  $scope.removeTask = function (index) {
+
+  function removeTask(index) {
     $scope.tasks.splice(index, 1);
     taskCount--;
   }
-});
+};
 
-app.directive('onEnter', function () {
+function onEnter() {
   return function (scope, element, attrs) {
 
     element.bind("keydown keypress", function (event) {
@@ -49,4 +65,4 @@ app.directive('onEnter', function () {
       }
     });
   };
-});
+};
