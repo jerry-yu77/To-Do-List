@@ -59,3 +59,15 @@ button {
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
+
+/* The animation code */
+@keyframes example {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+li {
+  animation-name: example;
+  animation-duration: 1s;
+}
+

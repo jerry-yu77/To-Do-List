@@ -18,7 +18,7 @@
           <input type="checkbox" data-ng-checked="task.checked" data-ng-model="checked"
                  data-ng-click="moveTask($index, checked, task)">&nbsp{{task.name}}
         </label>
-        <button data-ng-show="task.checked" data-ng-click="removeTask($index)"></button>
+        <button data-ng-show="task.checked" data-ng-click="removeTask($index)" title="Remove"></button>
       </li>
     </ul>
   </div>
